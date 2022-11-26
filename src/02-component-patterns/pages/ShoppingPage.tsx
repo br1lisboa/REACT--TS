@@ -1,5 +1,11 @@
 import { ProductCard } from "../components/ProductCard"
 
+const product = {
+    id: '1',
+    title: 'Coffe Mug - Card',
+    img:'./coffee-mug.png'
+}
+
 export const ShoppingPage = () => {
     return (
         <div>
@@ -7,7 +13,14 @@ export const ShoppingPage = () => {
                 ShoppingPage
             </h1>
             <hr />
-            <ProductCard />
+
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap'
+            }}>
+                <ProductCard product={product} />
+            </div>
         </div>
     )
 }
