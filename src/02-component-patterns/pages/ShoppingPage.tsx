@@ -22,16 +22,25 @@ export const ShoppingPage = () => {
                 flexWrap: 'wrap'
             }}>
                 {/* COMPOUND COMPONENT PATTERN */}
-                <ProductCard product={product} >
-                    <ProductCard.Image />
-                    <ProductCard.Title title={'Cafe Marron'} />
-                    <ProductCard.Buttons />
+                <ProductCard product={product} className="bg-dark text-white text-center">
+                    <ProductCard.Image className="custom-image" />
+                    <ProductCard.Title title={'Cafe Marron'} className="text-bold" />
+                    <ProductCard.Buttons className="custom-buttons" />
                 </ProductCard>
 
-                <ProductCard product={product} className="bg-dark" >
+                <ProductCard product={product} className="bg-dark text-white text-center" >
+                    <ProductImage className="custom-image" />
+                    <ProductTitle className="text-bold" />
+                    <ProductButtons className="custom-buttons" />
+                </ProductCard>
+
+                <ProductCard product={product} style={{ backgroundColor: "#61DAFB" }} >
                     <ProductImage />
-                    <ProductTitle className="text-white" />
-                    <ProductButtons />
+                    <ProductTitle />
+                    <ProductButtons style={{
+                        display: 'flex',
+                        justifyContent: 'enf'
+                    }} />
                 </ProductCard>
             </div>
         </div>
