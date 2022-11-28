@@ -1,4 +1,5 @@
-import { ProductButtons, ProductCard, ProductImage, ProductTitle } from "../components/ProductCard"
+import { ProductCard, ProductImage, ProductTitle, ProductButtons } from "../components"
+
 
 const product = {
     id: '1',
@@ -22,14 +23,14 @@ export const ShoppingPage = () => {
                 {/* COMPOUND COMPONENT PATTERN */}
                 <ProductCard product={product} >
                     <ProductCard.Image />
-                    <ProductCard.Title title={''} />
-                    <ProductCard.Buttons increaseBy={function (value: number): void { }} counter={0} />
+                    <ProductCard.Title title={'Cafe Marron'} />
+                    <ProductCard.Buttons />
                 </ProductCard>
 
                 <ProductCard product={product} >
                     <ProductImage />
-                    <ProductTitle title={''} />
-                    <ProductButtons increaseBy={function (value: number): void { }} counter={0} />
+                    <ProductTitle />
+                    <ProductButtons />
                 </ProductCard>
             </div>
         </div>
