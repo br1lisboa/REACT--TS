@@ -29,6 +29,8 @@ export const ShoppingPage = () => {
 
     const onProductCountChange = ({ count, product }: { count: number, product: Product }) => {
 
+        console.log({ count })
+
         setShoppingCart(oldShoppingCart => {
 
             if (count === 0) {
