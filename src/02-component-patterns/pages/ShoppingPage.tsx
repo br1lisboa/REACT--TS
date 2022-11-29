@@ -34,7 +34,7 @@ export const ShoppingPage = () => {
             if (count === 0) {
 
                 const { [product.id]: toDelete, ...rest } = oldShoppingCart
-                console.log({ toDelete })
+                /* console.log({ toDelete }) */
 
                 return {
                     ...rest
@@ -46,8 +46,10 @@ export const ShoppingPage = () => {
                 [product.id]: { ...product, count }
             }
         })
-
     }
+
+    let productos = Object.values(shoppingCart)
+    /* console.log(productos) */
 
     return (
         <div>
@@ -66,10 +68,12 @@ export const ShoppingPage = () => {
                 {
                     products.map(product => (
                         <ProductCard
-                            onChange={onProductCountChange}
+                            className="bg-dark text-white text-center"
                             key={product.id}
                             product={product}
-                            className="bg-dark text-white text-center" >
+                            onChange={onProductCountChange}
+                            value={shoppingCart[product.id]?.count || 0}
+                        >
                             <ProductImage className="custom-image" />
                             <ProductTitle className="text-bold" />
                             <ProductButtons className="custom-buttons" />
@@ -80,31 +84,25 @@ export const ShoppingPage = () => {
             </div>
 
             <div className="shopping-cart">
-                <ProductCard
-                    product={product2}
-                    className="bg-dark text-white text-center"
-                    style={{ width: '150px' }}
-                /* onChange={() => onProductCountChange()} */
-                >
-                    <ProductImage className="custom-image" />
-                    <ProductButtons className="custom-buttons" />
-                </ProductCard>
-
-                <ProductCard
-                    product={product}
-                    className="bg-dark text-white text-center"
-                    style={{ width: '150px' }}
-                >
-                    <ProductImage className="custom-image" />
-                    <ProductButtons className="custom-buttons" />
-                </ProductCard>
+                {
+                    productos.map(p => (
+                        <ProductCard
+                            className="bg-dark text-white text-center"
+                            style={{ width: '150px' }}
+                            key={p.id}
+                            product={p}
+                            onChange={onProductCountChange}
+                            value={p.count}
+                        >
+                            <ProductImage className="custom-image" />
+                            <ProductButtons
+                                className="custom-buttons"
+                                style={{ display: 'flex', justifyContent: 'center' }} />
+                        </ProductCard>
+                    ))
+                }
             </div>
 
-            <div>
-                <code>
-                    {JSON.stringify(shoppingCart, null, 5)}
-                </code>
-            </div>
         </div>
     )
 }
