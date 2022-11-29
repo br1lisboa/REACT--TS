@@ -1,25 +1,26 @@
 import { ReactElement } from 'react';
 
 export interface ProductCardProps {
-    product: Product
     children?: ReactElement | ReactElement[]
+    product: Product
 }
 
 export interface Product {
     id: string,
-    title: string,
     img?: string
+    title: string,
 }
 
 export interface ProductContextxProps {
     counter: number
-    increaseBy: (value: number) => void
+    maxCount?: number
     product: Product
+    increaseBy: (value: number) => void
 }
 
 export interface onChangeArgs {
-    product: Product,
     count: number
+    product: Product,
 }
 
 export interface ProductInCart extends Product {
@@ -29,4 +30,14 @@ export interface ProductInCart extends Product {
 export interface InitialValues {
     count?: number
     maxCount?: number
+}
+
+export interface ProductCardHandlers {
+    count: number
+    isMaxCountReached: boolean
+    maxCount?: number
+    product: Product
+
+    increaseBy: (value: number) => void
+    reset: () => void
 }
