@@ -1,57 +1,13 @@
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from "../components"
-import { Product } from '../interfaces/interfaces';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
+import { products } from "../data/product";
 import '../styles/custom-styles.css'
-import { useState } from 'react';
 
-const product = {
-    id: '1',
-    title: 'Coffe Mug - Card',
-    img: './coffee-mug.png'
-}
-
-const product2 = {
-    id: '2',
-    title: 'Coffe Mug - Meme',
-    img: './coffee-mug2.png'
-}
-
-const products: Product[] = [product, product2]
-
-
-interface ProductInCart extends Product {
-    count: number
-}
 
 export const ShoppingPage = () => {
 
-    const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({})
-
-    const onProductCountChange = ({ count, product }: { count: number, product: Product }) => {
-
-        console.log({ count })
-
-        setShoppingCart(oldShoppingCart => {
-
-            if (count === 0) {
-
-                const { [product.id]: toDelete, ...rest } = oldShoppingCart
-                /* console.log({ toDelete }) */
-
-                return {
-                    ...rest
-                }
-            }
-
-            return {
-                ...oldShoppingCart,
-                [product.id]: { ...product, count }
-            }
-        })
-    }
-
-    let productos = Object.values(shoppingCart)
-    /* console.log(productos) */
+    const { shoppingCart, onProductCountChange } = useShoppingCart()
 
     return (
         <div>
@@ -87,7 +43,7 @@ export const ShoppingPage = () => {
 
             <div className="shopping-cart">
                 {
-                    productos.map(p => (
+                    Object.values(shoppingCart).map(p => (
                         <ProductCard
                             className="bg-dark text-white text-center"
                             style={{ width: '150px' }}
